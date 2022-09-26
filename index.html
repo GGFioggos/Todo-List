@@ -5,11 +5,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css" />
     <title>Todo List</title>
 </head>
 
-<body></body>
+<body>
+    <div id="container">
+        <div id="header">
+            <img src="assets/logo.png" class="logo" />
+            <div>
+                <p class="title">Todo List</p>
+                <p class="punchline"><em>Get Things Done.</em></p>
+            </div>
+        </div>
+        <div id="main">
+            <div id="sidebar">
+                <ul class="default-timetables">
+                    <li class="active">
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <p>Today</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-calendar-week" aria-hidden="true"></i>
+                        <p>This Week</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-calendar" aria-hidden="true"></i>
+                        <p>This Month</p>
+                    </li>
+                </ul>
+                <h2>Projects</h2>
+                <ul class="projects">
+                    <li class="add-project">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                        <div class="add-text">Add project</div>
+                    </li>
+            </div>
+            </li>
+            </ul>
+        </div>
+        <div id="content"></div>
+    </div>
+    <div id="footer"></div>
+    </div>
+</body>
 
 </html>
