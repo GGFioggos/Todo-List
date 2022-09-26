@@ -1,0 +1,23 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Todo-List web app made for practicing HTML/CSS and JavaScript OOP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GGFioggos/Todo-List.git"
+  },
+  "author": "GGFioggos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GGFioggos/Todo-List/issues"
+  },
+  "homepage": "https://github.com/GGFioggos/Todo-List#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
