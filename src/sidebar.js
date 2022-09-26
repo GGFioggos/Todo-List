@@ -3,8 +3,6 @@ export function setUpSidebar() {
 
     const addProject = document.querySelector(".add-project");
     addProject.addEventListener("click", createProject);
-
-    //insert before
 }
 
 function setDefaultEventListeners() {
