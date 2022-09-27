@@ -1,3 +1,6 @@
+import { Project } from "./content";
+import { addProject } from "./content";
+
 export function setUpSidebar() {
     setDefaultEventListeners();
 
@@ -20,8 +23,6 @@ function setDefaultEventListeners() {
 
 function createProject() {
     const addProject = document.querySelector(".add-project");
-    const testinput = document.createElement("input");
-    testinput.placeholder = "Project name";
 
     addProject.removeEventListener("click", createProject);
 
@@ -29,7 +30,7 @@ function createProject() {
     const confirm = document.querySelector(".confirm");
     const cancel = document.querySelector(".cancel");
 
-    // confirm.addEventListener("click", addProject); //TO BE ADDED
+    confirm.addEventListener("click", passProject);
     cancel.addEventListener("click", resetAddProject);
 
 }
@@ -46,9 +47,19 @@ function inputAddProject() {
     const addProject = document.querySelector(".add-project");
     addProject.classList.add("active");
 
-    addProject.innerHTML = `<input placeholder="Project name">
+    addProject.innerHTML = `<input id="project-name" placeholder="Project name">
+    <textarea id="project-description" placeholder="Description"></textarea>
     <div class="confirmation">
     <div class="confirm">Add</div>
     <div class="cancel">Cancel</div>
     </div>`
 }
+
+function passProject(){
+    const project = Project(document.querySelector("#project-name").value, document.querySelector("#project-description").value);
+    if (project.title != ""){
+        addProject(project);
+    }
+    resetAddProject();
+}
+
