@@ -11,6 +11,5 @@ export function Task(title, description) {
 
 export function addProject(project) {
     projects.push(project);
-    console.log(projects);
 };
 
