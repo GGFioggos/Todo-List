@@ -3,7 +3,8 @@
     padding: 0;
 }
 
-html,body {
+html,
+body {
     font-family: 'Roboto', sans-serif;
 }
 
@@ -14,7 +15,7 @@ html,body {
 
 #main {
     display: flex;
-    height: calc(100vh - 100px - 49px);    
+    height: calc(100vh - 100px - 49px);
 }
 
 /* HEADER */
@@ -32,7 +33,7 @@ html,body {
     height: 80%;
 }
 
-#header p{
+#header p {
     margin-left: 15px;
 }
 
@@ -79,14 +80,45 @@ html,body {
     background: rgb(194, 194, 194);
 }
 
+.project.active,
 .default-timetables .active {
-background-color: rgb(194, 194, 194);
+    background-color: rgb(194, 194, 194);
 }
 
 #sidebar h2 {
     font-weight: bold;
     margin-left: 15px;
     margin-top: 25px;
+}
+
+.project {
+    display: flex;
+    align-items: flex-start;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.project div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.project i {
+    margin-top: 3px;
+}
+
+.project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.project-description {
+    font-size: 0.9rem;
+    font-weight: 300;
 }
 
 .add-project input {
@@ -119,7 +151,7 @@ background-color: rgb(194, 194, 194);
 
 .confirmation {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
 .confirmation div:nth-child(2),
@@ -131,7 +163,7 @@ background-color: rgb(194, 194, 194);
     padding-block: 10px;
 }
 
-.confirmation div:nth-child(2){
+.confirmation div:nth-child(2) {
     background-color: rgba(255, 0, 0, 0.804);
 }
 
@@ -146,5 +178,4 @@ background-color: rgb(194, 194, 194);
     background-color: purple;
     height: 50px;
     width: 100%;
- }
-
+}
