@@ -2,37 +2,38 @@ import { Project } from "./content";
 import { addProject } from "./content";
 
 export function setUpSidebar() {
-    setDefaultEventListeners();
+    setActiveEventListeners(document.querySelectorAll(".default-timetables li"));
 
     const addProject = document.querySelector(".add-project");
-    addProject.addEventListener("click", createProject);
+    addProject.addEventListener("click", createProjectUI);
 }
 
-function setDefaultEventListeners() {
-    const default_timetables_li = document.querySelectorAll(".default-timetables li");
-
-    default_timetables_li.forEach((timetable) => {
-        timetable.addEventListener("click", () => {
-            default_timetables_li.forEach((timetable) => {
-                timetable.classList.remove("active");
-            });
-            timetable.className = "active";
-        })
+function setActiveEventListeners(li_items) {
+    li_items.forEach((li) => {
+        if (!li.classList.contains("add-project")) {
+            console.log(li);
+            li.addEventListener("click", () => {
+                li_items.forEach((li) => {
+                    li.classList.remove("active");
+                });
+                li.classList.add("active");
+            })
+        }
     });
 }
 
-function createProject() {
+function createProjectUI() {
     const addProject = document.querySelector(".add-project");
 
-    addProject.removeEventListener("click", createProject);
+    addProject.removeEventListener("click", createProjectUI);
 
     inputAddProject();
+
     const confirm = document.querySelector(".confirm");
     const cancel = document.querySelector(".cancel");
 
     confirm.addEventListener("click", passProject);
     cancel.addEventListener("click", resetAddProject);
-
 }
 
 function resetAddProject() {
@@ -40,7 +41,7 @@ function resetAddProject() {
     addProject.classList.remove("active");
     addProject.innerHTML = `<i class="fas fa-plus" aria-hidden="true"></i>
     <div class="add-text">Add project</div>`;
-    setTimeout(() => addProject.addEventListener("click", createProject), 1);
+    setTimeout(() => addProject.addEventListener("click", createProjectUI), 1);
 }
 
 function inputAddProject() {
@@ -55,11 +56,46 @@ function inputAddProject() {
     </div>`
 }
 
-function passProject(){
+function passProject() {
     const project = Project(document.querySelector("#project-name").value, document.querySelector("#project-description").value);
-    if (project.title != ""){
+
+    if (project.title != "") {
         addProject(project);
+        createProject(project);
     }
     resetAddProject();
+}
+
+function createProject(project) {
+    const projectsUL = document.querySelector(".projects");
+    const addProject = document.querySelector(".add-project");
+
+    const li = document.createElement("li");
+    li.className = "project";
+
+    const icon = document.createElement("i");
+    icon.className = "fas fa-tasks";
+    icon.ariaHidden = true;
+
+    const projectTitle = document.createElement("div");
+    projectTitle.className = "project-title";
+    projectTitle.textContent = project.title;
+
+    const projectDescription = document.createElement("div");
+    projectDescription.className = "project-description";
+    projectDescription.textContent = project.description;
+
+    const projectinfo = document.createElement("div");
+    projectinfo.className = "project-info";
+
+    projectinfo.appendChild(projectTitle);
+    projectinfo.appendChild(projectDescription);
+
+    li.appendChild(icon);
+    li.appendChild(projectinfo);
+
+    projectsUL.insertBefore(li, addProject);
+
+    setActiveEventListeners(document.querySelectorAll(".projects li"));
 }
 
