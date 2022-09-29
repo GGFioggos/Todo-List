@@ -171,6 +171,32 @@ body {
     background: none !important;
 }
 
+/* CONTENT */
+
+#content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#content h2 {
+    position: relative;
+    font-weight: 500;
+    margin-top: 50px;
+}
+
+.task-card {
+    border-radius: 15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 80px;
+}
+
+
 /* FOOTER */
 #footer {
     position: absolute;
