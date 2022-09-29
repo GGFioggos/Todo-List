@@ -1,5 +1,6 @@
 import { Project } from "./content";
 import { addProject } from "./content";
+import { setUpContent } from "./content";
 
 export function setUpSidebar() {
     setActiveEventListeners(document.querySelectorAll(".default-timetables li"));
@@ -11,12 +12,12 @@ export function setUpSidebar() {
 function setActiveEventListeners(li_items) {
     li_items.forEach((li) => {
         if (!li.classList.contains("add-project")) {
-            console.log(li);
             li.addEventListener("click", () => {
                 li_items.forEach((li) => {
                     li.classList.remove("active");
                 });
                 li.classList.add("active");
+                setUpContent();
             })
         }
     });
@@ -69,7 +70,6 @@ function passProject() {
 function createProject(project) {
     const projectsUL = document.querySelector(".projects");
     const addProject = document.querySelector(".add-project");
-
     const li = document.createElement("li");
     li.className = "project";
 
@@ -96,6 +96,6 @@ function createProject(project) {
 
     projectsUL.insertBefore(li, addProject);
 
-    setActiveEventListeners(document.querySelectorAll(".projects li"));
+    setActiveEventListeners(document.querySelectorAll("#sidebar ul li"));
 }
 
