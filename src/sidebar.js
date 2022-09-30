@@ -1,10 +1,12 @@
 import { Project } from "./content";
 import { addProject } from "./content";
 import { setUpContent } from "./content";
+import { saveLocally } from "./localStorage";
+import { projects } from "./index";
 
 export function setUpSidebar() {
     setActiveEventListeners(document.querySelectorAll(".default-timetables li"));
-
+    createProjects();
     const addProject = document.querySelector(".add-project");
     addProject.addEventListener("click", createProjectUI);
 }
@@ -62,39 +64,44 @@ function passProject() {
 
     if (project.title != "") {
         addProject(project);
-        createProject(project);
+        createProjects(project);
+        saveLocally();
     }
     resetAddProject();
 }
 
-function createProject(project) {
+function createProjects() {
     const projectsUL = document.querySelector(".projects");
     const addProject = document.querySelector(".add-project");
-    const li = document.createElement("li");
-    li.className = "project";
+    console.log(projects);
+    for (let i = 3; i < projects.length; i++) {
+        const li = document.createElement("li");
+        li.className = "project";
 
-    const icon = document.createElement("i");
-    icon.className = "fas fa-tasks";
-    icon.ariaHidden = true;
+        const icon = document.createElement("i");
+        icon.className = "fas fa-tasks";
+        icon.ariaHidden = true;
 
-    const projectTitle = document.createElement("div");
-    projectTitle.className = "project-title";
-    projectTitle.textContent = project.title;
+        const projectTitle = document.createElement("div");
+        projectTitle.className = "project-title";
+        projectTitle.textContent = projects[i].title;
 
-    const projectDescription = document.createElement("div");
-    projectDescription.className = "project-description";
-    projectDescription.textContent = project.description;
+        const projectDescription = document.createElement("div");
+        projectDescription.className = "project-description";
+        projectDescription.textContent = projects[i].description;
 
-    const projectinfo = document.createElement("div");
-    projectinfo.className = "project-info";
+        const projectinfo = document.createElement("div");
+        projectinfo.className = "project-info";
 
-    projectinfo.appendChild(projectTitle);
-    projectinfo.appendChild(projectDescription);
+        projectinfo.appendChild(projectTitle);
+        projectinfo.appendChild(projectDescription);
 
-    li.appendChild(icon);
-    li.appendChild(projectinfo);
+        li.appendChild(icon);
+        li.appendChild(projectinfo);
 
-    projectsUL.insertBefore(li, addProject);
+        projectsUL.insertBefore(li, addProject);
+
+    }
 
     setActiveEventListeners(document.querySelectorAll("#sidebar ul li"));
 }
