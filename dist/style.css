@@ -161,11 +161,17 @@ body {
 .confirmation div:nth-child(2),
 .confirmation div:first-child {
     background-color: rgba(0, 176, 0, 0.817);
+    box-shadow: 2px 2px 2px rgba(32, 32, 32, 0.619);;
     border-radius: 8px;
     width: 40%;
     text-align: center;
     padding-block: 10px;
     cursor: pointer;
+}
+
+.confirmation div:nth-child(2):hover,
+.confirmation div:first-child:hover {
+    filter:saturate(20%);
 }
 
 .confirmation div:nth-child(2) {
@@ -193,17 +199,37 @@ body {
 #content h2 {
     position: relative;
     font-weight: 500;
-    margin-top: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .task-card {
     background-color: rgba(188, 188, 188, 0.476);
     border-radius: 15px;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     width: 600px;
     height: 80px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.562);;
+}
+
+.task-title, .task-description {
+    margin-inline: 20px;
+}
+
+.add-task i{
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.task-card .task-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.task-card .task-description {
+    margin-top: 5px;
 }
 
 .add-task {
@@ -221,20 +247,17 @@ body {
 .add-task input,
 #task-description {
     font-size: 1.1rem;
-
     width: 90%;
     height: 25px;
     padding-inline: 5px;
     margin-top: 5px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.462);;
 }
 
 .add-task .confirmation > div {
     width: 70px;
     margin: 10px;
 }
-
-
-
 
 
 /* FOOTER */
