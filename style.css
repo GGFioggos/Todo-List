@@ -121,6 +121,7 @@ body {
     font-weight: 300;
 }
 
+.add-task input,
 .add-project input {
     font-size: 1.1rem;
     width: 100%;
@@ -131,6 +132,7 @@ body {
     padding-left: 5px;
 }
 
+#task-description,
 #project-description {
     outline: none;
     border: none;
@@ -141,8 +143,10 @@ body {
     font-size: 1.1rem;
     resize: none;
     height: 100px;
+    width: 100%;
 }
 
+.add-task.active,
 .add-project.active {
     display: flex;
     flex-direction: column;
@@ -161,6 +165,7 @@ body {
     width: 40%;
     text-align: center;
     padding-block: 10px;
+    cursor: pointer;
 }
 
 .confirmation div:nth-child(2) {
@@ -173,11 +178,15 @@ body {
 
 /* CONTENT */
 
+.project-tasks,
 #content {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.project-tasks {
     gap: 15px;
 }
 
@@ -188,6 +197,7 @@ body {
 }
 
 .task-card {
+    background-color: rgba(188, 188, 188, 0.476);
     border-radius: 15px;
     border: 1px solid black;
     display: flex;
@@ -195,6 +205,36 @@ body {
     width: 600px;
     height: 80px;
 }
+
+.add-task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+}
+
+.add-task.active{
+    height: 130px;
+}
+
+.add-task input,
+#task-description {
+    font-size: 1.1rem;
+
+    width: 90%;
+    height: 25px;
+    padding-inline: 5px;
+    margin-top: 5px;
+}
+
+.add-task .confirmation > div {
+    width: 70px;
+    margin: 10px;
+}
+
+
+
 
 
 /* FOOTER */
