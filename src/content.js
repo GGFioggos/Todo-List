@@ -1,4 +1,5 @@
 import { projects } from "./index";
+import { saveLocally } from "./localStorage";
 
 export function setUpContent() {
 	const content = document.querySelector("#content");
@@ -14,16 +15,16 @@ function getCurrentProject() {
 		...document.querySelectorAll(".projects li"),
 		...document.querySelectorAll(".default-timetables li"),
 	];
-	
+
 	for (let possibility in possibilities) {
 		if (possibilities[possibility].classList.contains("active") && !possibilities[possibility].classList.contains("add-project")) {
 			var currentProject = possibilities[possibility];
 			break;
 		}
 	}
-	if (currentProject.classList.contains("project")){
+	if (currentProject.classList.contains("project")) {
 		return projects.find((project) => project.title == currentProject.childNodes[1].childNodes[0].textContent);
-	}else {
+	} else {
 		return projects.find((project) => project.title == currentProject.textContent.trim());
 	}
 }
@@ -31,42 +32,42 @@ function getCurrentProject() {
 function createProjectUI(currentProject) {
 	const content = document.querySelector("#content");
 	content.innerHTML = "";
-	
+
 	content.appendChild(projectName(currentProject));
-	
+
 	content.appendChild(createProjectTaskCards(currentProject));
-
-
 }
 
 function createProjectTaskCards(currentProject) {
 	const tasks = document.createElement("div");
 	tasks.className = "project-tasks";
-	
-	for (let task in currentProject.projectTasks){
+
+	for (let task in currentProject.projectTasks) {
 		const card = document.createElement("div");
 		card.className = "task-card";
 
 		const taskTitle = document.createElement("p");
 		taskTitle.className = "task-title";
 		taskTitle.textContent = currentProject.projectTasks[task].title;
-		
+
 		const taskDescription = document.createElement("p");
 		taskDescription.className = "task-description";
 		taskDescription.textContent = currentProject.projectTasks[task].description;
-		
+
 		const round = document.createElement("div");
 		round.className = "round";
 
 		const checkbox = document.createElement("input");
 		checkbox.type = "checkbox";
 		checkbox.id = `checkbox${task}`;
-		
+
+		if (currentProject.projectTasks[task].finished){
+			checkbox.checked = true;
+		}
+
 		checkbox.addEventListener("click", (event) => {
 			let id = event.target.id.toString();
-			let finishedTask = id.substr(id.length - 1);
-			finishedTask = currentProject.projectTasks[finishedTask];
-			finishedTask.finished = finishedTask.finished? false : true; 
+			completeTask(id);
 		});
 
 		const checkboxlabel = document.createElement("label");
@@ -89,9 +90,9 @@ function createProjectTaskCards(currentProject) {
 
 	const icon = document.createElement("i");
 	icon.className = "fas fa-plus";
-    icon.ariaHidden = true;
+	icon.ariaHidden = true;
 
-	const addTaskText= document.createElement("p");
+	const addTaskText = document.createElement("p");
 	addTaskText.textContent = "Add new task";
 
 	addTaskCard.appendChild(icon);
@@ -99,6 +100,13 @@ function createProjectTaskCards(currentProject) {
 	tasks.appendChild(addTaskCard);
 
 	return tasks;
+}
+
+function completeTask(id) {
+	let finishedTask = id.substr(id.length - 1);
+	finishedTask = getCurrentProject().projectTasks[finishedTask];
+	finishedTask.finished = finishedTask.finished ? false : true;
+	saveLocally();
 }
 
 function createAddTaskUI() {
@@ -119,21 +127,24 @@ function inputAddTask() {
 	const addTaskCard = document.querySelector(".add-task");
 	addTaskCard.classList.add("active");
 
-	addTaskCard.innerHTML = `<input id="task-name" placeholder="Task name">
-    <input id="task-description" placeholder="Description"></input>
+	addTaskCard.innerHTML = `<input id="task-name" maxlength= "40" placeholder="Task name">
+    <input id="task-description" maxlength= "100" placeholder="Description"></input>
     <div class="confirmation">
     <div class="confirm">Add</div>
     <div class="cancel">Cancel</div>
     </div>`
+
+
 }
 
 function passTask() {
-	const task = Task(document.querySelector("#task-name").value,document.querySelector("#task-description").value);
+	const task = Task(document.querySelector("#task-name").value, document.querySelector("#task-description").value);
 
-	if( task.title != ""){
+	if (task.title != "") {
 		const currentProject = getCurrentProject();
 		currentProject.projectTasks.push(task);
 		createProjectUI(currentProject);
+		saveLocally();
 	}
 }
 
@@ -147,7 +158,7 @@ function resetAddTask() {
 function projectName(currentProject) {
 	const header = document.createElement("h2");
 	header.textContent = currentProject.title;
-	
+
 	return header;
 }
 
