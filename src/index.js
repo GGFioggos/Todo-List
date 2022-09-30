@@ -4,6 +4,7 @@ import { Project } from "./content";
 import { Task } from "./content";
 import { loadLocally, saveLocally } from "./localStorage";
 
+
 export let projects = [];
 
 if( localStorage.length == 0){
@@ -32,7 +33,7 @@ function createDefaultProjects() {
 	const thisMonthProject = Project("This Month", "");
 	thisMonthProject.projectTasks = [
 		Task("Pay Electricity Bills", "Pay bills online"),
-		Task("Search for new job", "Search linkedIn for job postings"),
+		Task("Search for new job", "Search LinkedIn for job postings"),
 	];
 
 	return [todayProject, thisWeekProject, thisMonthProject];
