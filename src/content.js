@@ -36,6 +36,7 @@ function createProjectUI(currentProject) {
 	
 	content.appendChild(createProjectTaskCards(currentProject));
 
+
 }
 
 function createProjectTaskCards(currentProject) {
@@ -45,7 +46,7 @@ function createProjectTaskCards(currentProject) {
 	for (let task in currentProject.projectTasks){
 		const card = document.createElement("div");
 		card.className = "task-card";
-		
+
 		const taskTitle = document.createElement("p");
 		taskTitle.className = "task-title";
 		taskTitle.textContent = currentProject.projectTasks[task].title;
@@ -54,12 +55,34 @@ function createProjectTaskCards(currentProject) {
 		taskDescription.className = "task-description";
 		taskDescription.textContent = currentProject.projectTasks[task].description;
 		
+		const round = document.createElement("div");
+		round.className = "round";
+
+		const checkbox = document.createElement("input");
+		checkbox.type = "checkbox";
+		checkbox.id = `checkbox${task}`;
+		
+		checkbox.addEventListener("click", (event) => {
+			let id = event.target.id.toString();
+			let finishedTask = id.substr(id.length - 1);
+			finishedTask = currentProject.projectTasks[finishedTask];
+			finishedTask.finished = finishedTask.finished? false : true; 
+		});
+
+		const checkboxlabel = document.createElement("label");
+		checkboxlabel.htmlFor = `checkbox${task}`;
+
+		round.appendChild(checkbox);
+		round.appendChild(checkboxlabel);
+
 		card.appendChild(taskTitle);
 		card.appendChild(taskDescription);
+		card.appendChild(round);
 
 		tasks.appendChild(card);
 	}
 
+	// ADD NEW TASK BTN
 	const addTaskCard = document.createElement("div");
 	addTaskCard.addEventListener("click", createAddTaskUI);
 	addTaskCard.className = "task-card add-task";
@@ -134,7 +157,8 @@ export function Project(title, description) {
 }
 
 export function Task(title, description) {
-	return { title, description };
+	let finished = false;
+	return { title, description, finished };
 }
 
 export function addProject(project) {
