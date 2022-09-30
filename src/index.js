@@ -12,14 +12,14 @@ setUpContent();
 function createDefaultProjects() {
 	const todayProject = Project("Today", "");
 	todayProject.projectTasks = [
-		Task("Groceries", "Get groceries form the supermarket"),
+		Task("Groceries", "Get groceries from the supermarket"),
 		Task("Homework", "Do the homework"),
 	];
 
 	const thisWeekProject = Project("This Week", "");
 	thisWeekProject.projectTasks = [
-		Task("Finish CS project", ""),
 		Task("Service car", "Service the car to Tomas' service shop"),
+		Task("Finish CS project", ""),
 	];
 
 	const thisMonthProject = Project("This Month", "");
