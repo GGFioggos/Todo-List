@@ -9,10 +9,10 @@ export function saveLocally() {
 
 export function loadLocally() {
     let projectTitles = Object.keys(localStorage);
+    projectTitles = projectTitles.filter(title => title != "firstTime");
     let i = 0;
     projectTitles.forEach( projectTitle => {
         projects[i] = JSON.parse(localStorage.getItem(projectTitle));
         i++;
     });
-    console.log(projects);
 }
