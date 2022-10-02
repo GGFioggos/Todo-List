@@ -61,8 +61,11 @@ function createProjectTaskCards(currentProject) {
 		checkbox.type = "checkbox";
 		checkbox.id = `checkbox${task}`;
 
-		if (currentProject.projectTasks[task].finished){
+		if (currentProject.projectTasks[task].finished) {
 			checkbox.checked = true;
+			card.style.backgroundPosition = "right";
+			card.style.background = "linear-gradient(to left, rgb(14, 180, 17) 50%, rgba(188, 188, 188, 0.476) 50%) right";
+			card.style.backgroundSize = "200%";
 		}
 
 		checkbox.addEventListener("click", (event) => {
@@ -103,6 +106,7 @@ function createProjectTaskCards(currentProject) {
 }
 
 function completeTask(id) {
+	animateCard(id);
 	let finishedTask = id.substr(id.length - 1);
 	finishedTask = getCurrentProject().projectTasks[finishedTask];
 	finishedTask.finished = finishedTask.finished ? false : true;
@@ -160,6 +164,19 @@ function projectName(currentProject) {
 	header.textContent = currentProject.title;
 
 	return header;
+}
+
+function animateCard(id) {
+	const checkbox = document.getElementById(id);
+	const card = checkbox.parentElement.parentElement;
+	if (checkbox.checked) {
+		card.style.backgroundPosition = "right";
+		card.style.background = "linear-gradient(to left, rgb(14, 180, 17) 50%, rgba(188, 188, 188, 0.476) 50%) right";
+		card.style.backgroundSize = "200%";
+		card.style.transition = ".3s ease-out";
+	} else {
+		card.style.backgroundPosition = "left";
+	}
 }
 
 export function Project(title, description) {

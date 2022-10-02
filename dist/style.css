@@ -21,7 +21,7 @@ body {
 /* HEADER */
 
 #header {
-    background-color: rgb(2, 165, 214);
+    background-color: rgb(19, 181, 203);
     display: flex;
     width: 100%;
     height: 100px;
@@ -51,6 +51,7 @@ body {
 /* SIDEBAR */
 
 #sidebar {
+    box-shadow: 1px 1px 1px rgba(141, 141, 141, 0.619);
     width: 300px;
     min-width: 250px;
     background-color: rgba(188, 188, 188, 0.476);
@@ -218,6 +219,7 @@ body {
 .task-title,
 .task-description {
     margin-inline: 20px;
+    word-wrap: break-word;
 }
 
 .add-task i {
@@ -330,4 +332,11 @@ body {
 
 .fa-github:hover {
     transform: rotate(360deg) scale(1.2);
+}
+
+.task-card {
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 0 #31302B;
+    transition: .3s ease-out;
 }
