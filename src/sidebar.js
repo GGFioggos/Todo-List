@@ -72,8 +72,13 @@ function passProject() {
 
 function createProjects() {
     const projectsUL = document.querySelector(".projects");
+    projectsUL.innerHTML = `<li class="add-project">
+    <i class="fas fa-plus" aria-hidden="true"></i>
+    <div class="add-text">Add project</div>
+    </li>`
+
     const addProject = document.querySelector(".add-project");
-    console.log(projects);
+    
     for (let i = 3; i < projects.length; i++) {
         const li = document.createElement("li");
         li.className = "project";
@@ -100,7 +105,6 @@ function createProjects() {
         li.appendChild(projectinfo);
 
         projectsUL.insertBefore(li, addProject);
-
     }
 
     setActiveEventListeners(document.querySelectorAll("#sidebar ul li"));
