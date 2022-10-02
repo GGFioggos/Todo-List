@@ -4,10 +4,11 @@ import { Project } from "./content";
 import { Task } from "./content";
 import { loadLocally, saveLocally } from "./localStorage";
 
-
 export let projects = [];
 
-if( localStorage.length == 0){
+if (localStorage.getItem("firstTime") == null){
+	localStorage.clear();
+	localStorage.setItem("firstTime", false);
 	projects = createDefaultProjects();
 	saveLocally();
 }else {
